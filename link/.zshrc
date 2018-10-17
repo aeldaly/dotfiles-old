@@ -141,6 +141,10 @@ zplug "paulirish/git-open", as:plugin, if:"[[ $(command -v git) ]]"
 zplug "mafredri/zsh-async", on:sindresorhus/pure
 zplug "sindresorhus/pure", use:pure.zsh, defer:3
 
+zplug "tarruda/zsh-autosuggestions", use:autosuggestions.zsh
+
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+
 if ! zplug check; then
     zplug install
 fi
@@ -173,3 +177,28 @@ fi
 [[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 [[ -f "${HOME}/.completions" ]] && source "${HOME}/.completions"
 [[ -f "${HOME}/.extra" ]] && source "${HOME}/.extra"
+
+export PATH="/Users/aeldaly/.gem/ruby/2.5.0/bin:$PATH"
+
+# Customise the Powerlevel9k prompts
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  dir 
+  vcs
+  newline
+  status
+)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+POWERLEVEL9K_CUSTOM_JAVASCRIPT="echo -n '\ue781' JavaScript"
+POWERLEVEL9K_CUSTOM_JAVASCRIPT_FOREGROUND="black"
+POWERLEVEL9K_CUSTOM_JAVASCRIPT_BACKGROUND="yellow"
+
+POWERLEVEL9K_CUSTOM_PYTHON="echo -n '\uf81f' Python"
+POWERLEVEL9K_CUSTOM_PYTHON_FOREGROUND="black"
+POWERLEVEL9K_CUSTOM_PYTHON_BACKGROUND="blue"
+
+POWERLEVEL9K_CUSTOM_RUBY="echo -n '\ue21e' Ruby"
+POWERLEVEL9K_CUSTOM_RUBY_FOREGROUND="black"
+POWERLEVEL9K_CUSTOM_RUBY_BACKGROUND="red"

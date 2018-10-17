@@ -2,11 +2,11 @@
 [[ "$OSTYPE" =~ ^darwin ]] || return 1
 
 # Disable menu bar transparency
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+# defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Show remaining battery time; hide percentage
-defaults write com.apple.menuextra.battery ShowPercent -string "NO"
-defaults write com.apple.menuextra.battery ShowTime -string "NO"
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
 # Always show scrollbars
 # defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
@@ -18,26 +18,26 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
 # Disable the “Are you sure you want to open this application?” dialog
-# defaults write com.apple.LaunchServices LSQuarantine -bool false
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Display ASCII control characters using caret notation in standard text views
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
 # Disable opening and closing window animations
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+# defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # Disable Resume system-wide
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+# defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
 # Disable the “reopen windows when logging back in” option
 # This works, although the checkbox will still appear to be checked,
 # and the command needs to be entered again for every restart.
-defaults write com.apple.loginwindow TALLogoutSavesState -bool false
-defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+# defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+# defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
 
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
@@ -124,16 +124,16 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Don’t animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
+# defaults write com.apple.dock launchanim -bool false
 
 # Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 10000
+# defaults write com.apple.Dock autohide-delay -float 10000
 
 # Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide-time-modifier -float 0
+# defaults write com.apple.dock autohide-time-modifier -float 0
 
 # Enable the 2D Dock
-defaults write com.apple.dock no-glass -bool true
+# defaults write com.apple.dock no-glass -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -142,13 +142,13 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock showhidden -bool true
 
 # Show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
+# defaults write com.apple.finder AppleShowAllFiles YES
 
 # Enable iTunes track notifications in the Dock
 defaults write com.apple.dock itunes-notifications -bool true
 
 # Disable Safari’s thumbnail cache for History and Top Sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+# defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
