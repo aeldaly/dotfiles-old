@@ -1,6 +1,6 @@
 [core]
     autocrlf = false
-    excludesfile = /Users/pgilad/.dotfiles/git/.gitignore_global
+	excludesfile = /Users/aeldaly/.gitignore_global
     attributesfile = ~/.dotfiles/.gitattributes
     editor = vim
     pager = less -FRSX
@@ -75,3 +75,12 @@
     relativePaths = false
 [include]
     path = ~/.gitconfig.local
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Ahmed El-Daly
+	email = aeldaly@gmail.com

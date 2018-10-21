@@ -25,11 +25,11 @@ export _FASD_DATA="$CACHE_DIR/.fasd" # set fasd data file location
 export ZPLUG_HOME="$HOME/.zplug"
 export NODE_REPL_HISTORY_FILE="$HOME/.node_history"
 
-export MANPAGER='less -X'; # Don't clear the screen after quitting a manual page.
+export MANPAGER='less -X'        # Don't clear the screen after quitting a manual page.
 export LESS_TERMCAP_md="$yellow" # Highlight section titles in manual pages.
 
 # Always enable colored `grep` output.
-export GREP_OPTIONS='--color=auto';
+export GREP_OPTIONS='--color=auto'
 export JOBS=max # tell npm to install concurrently
 export EDITOR=vim
 export VISUAL=vim
@@ -43,9 +43,9 @@ export GPG_TTY=$(tty)
 
 # set the correct term with TMUX
 if [[ -n "$TMUX" ]]; then
-    export TERM=screen-256color
+	export TERM=screen-256color
 else
-    export TERM=xterm-256color
+	export TERM=xterm-256color
 fi
 
 # language settings
@@ -53,41 +53,41 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 setopt append_history
-setopt bang_hist                # !keyword
+setopt bang_hist # !keyword
 setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_ignore_space
-setopt hist_reduce_blanks       # trim blanks
+setopt hist_reduce_blanks # trim blanks
 setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-setopt auto_cd                  # if command is a path, cd into it
-setopt auto_remove_slash        # self explicit
-setopt chase_links              # resolve symlinks
-setopt correct                  # try to correct spelling of commands
-setopt extended_glob            # activate complex pattern globbing
-setopt glob_dots                # include dotfiles in globbing
-setopt print_exit_value         # print return value if non-zero
-setopt no_beep # Disable sound
-unsetopt beep                   # no bell on error
-unsetopt bg_nice                # no lower prio for background jobs
-unsetopt clobber                # must use >| to truncate existing files
-unsetopt hist_beep              # no bell on error in history
-unsetopt hup                    # no hup signal at shell exit
-unsetopt ignore_eof             # do not exit on end-of-file
-unsetopt list_beep              # no bell on ambiguous completion
-unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
+setopt auto_cd           # if command is a path, cd into it
+setopt auto_remove_slash # self explicit
+setopt chase_links       # resolve symlinks
+setopt correct           # try to correct spelling of commands
+setopt extended_glob     # activate complex pattern globbing
+setopt glob_dots         # include dotfiles in globbing
+setopt print_exit_value  # print return value if non-zero
+setopt no_beep           # Disable sound
+unsetopt beep            # no bell on error
+unsetopt bg_nice         # no lower prio for background jobs
+unsetopt clobber         # must use >| to truncate existing files
+unsetopt hist_beep       # no bell on error in history
+unsetopt hup             # no hup signal at shell exit
+unsetopt ignore_eof      # do not exit on end-of-file
+unsetopt list_beep       # no bell on ambiguous completion
+unsetopt rm_star_silent  # ask for confirmation for `rm *' or `rm path/*'
 
 unsetopt menu_complete
 unsetopt flowcontrol
 
-setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word
-setopt complete_in_word         # allow completion from within a word/phrase
+setopt always_to_end    # when completing from the middle of a word, move the cursor to the end of the word
+setopt complete_in_word # allow completion from within a word/phrase
 setopt auto_menu
-setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
+setopt list_ambiguous # complete as much of a completion until it gets ambiguous.
 
 setopt auto_pushd
 setopt pushd_ignore_dups
@@ -104,7 +104,7 @@ zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-dir
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
-bindkey -e "use emacs key bindings"
+# bindkey -e "use emacs key bindings"
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^r' history-incremental-search-backward
@@ -115,14 +115,14 @@ bindkey '^[[Z' reverse-menu-complete
 zstyle ':zplug:tag' depth 42
 
 if [[ ! -d "$ZPLUG_HOME" ]]; then
-    echo "Installing zplug"
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-    # zplug.sh domain has expired
-    # curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
-    source "$ZPLUG_HOME/init.zsh"
-    zplug update
+	echo "Installing zplug"
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	# zplug.sh domain has expired
+	# curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
+	source "$ZPLUG_HOME/init.zsh"
+	zplug update
 else
-    source "$ZPLUG_HOME/init.zsh"
+	source "$ZPLUG_HOME/init.zsh"
 fi
 
 fpath=("$DOTFILES/zsh/completions" $fpath)
@@ -139,39 +139,39 @@ zplug "djui/alias-tips"
 zplug "paulirish/git-open", as:plugin, if:"[[ $(command -v git) ]]"
 
 zplug "mafredri/zsh-async", on:sindresorhus/pure
-zplug "sindresorhus/pure", use:pure.zsh, defer:3
+# zplug "sindresorhus/pure", use:pure.zsh, defer:3
 
-zplug "tarruda/zsh-autosuggestions", use:autosuggestions.zsh
+zplug "tarruda/zsh-autosuggestions", use:"dist/autosuggestions.zsh"
 
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 
 if ! zplug check; then
-    zplug install
+	zplug install
 fi
 
 zplug load
 
 if zplug check "creationix/nvm" && [[ $(command -v nvm) ]] && [[ $(nvm current) == "system" ]]; then
-    echo "Installing nvm latest node.js version"
-    nvm install node
-    nvm alias default node
+	echo "Installing nvm latest node.js version"
+	nvm install node
+	nvm alias default node
 fi
 
 if zplug check "zsh-users/zsh-history-substring-search"; then
-    bindkey '^[[A' history-substring-search-up
-    bindkey '^[[B' history-substring-search-down
+	bindkey '^[[A' history-substring-search-up
+	bindkey '^[[B' history-substring-search-down
 fi
 
 if [[ $(command -v rbenv) ]]; then
-    eval "$(rbenv init - zsh --no-rehash)"
+	eval "$(rbenv init - zsh --no-rehash)"
 fi
 
 if [[ $(command -v npm) ]]; then
-    . <(npm completion)
+	. <(npm completion)
 fi
 
 if [[ $(command -v fasd) ]]; then
-    eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+	eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 fi
 
 [[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
@@ -183,12 +183,16 @@ export PATH="/Users/aeldaly/.gem/ruby/2.5.0/bin:$PATH"
 # Customise the Powerlevel9k prompts
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-  dir 
-  vcs
-  newline
-  status
+	dir
+	vcs
+	newline
+	status
 )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+	battery
+    load
+    rspec_stats
+)
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 POWERLEVEL9K_CUSTOM_JAVASCRIPT="echo -n '\ue781' JavaScript"

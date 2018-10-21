@@ -23,6 +23,7 @@ brew 'heroku-toolbelt'
 brew 'gnu-sed', args: ['default-names']
 brew 'wget', args: ['enable-iri']
 brew 'vim', args: ['with-lua', 'with-luajit']
+brew 'shfmt'
 
 cask 'visual-studio-code'
 cask 'slack'
@@ -32,3 +33,4 @@ cask 'font-hack-nerd-font'
 cask 'iterm2'
 cask 'quicklook-csv'
 cask 'quicklook-json'
+cask 'sourcetree'
