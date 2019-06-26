@@ -1,5 +1,5 @@
 export DOTFILES="$HOME/.dotfiles"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:/Users/aeldaly/Library/Python/3.7/bin:$PATH:$HOME/google-cloud-sdk/bin"
 export CACHE_DIR="$HOME/.cache"
 
 [[ ! -d "$CACHE_DIR" ]] && mkdir -p "$CACHE_DIR"
@@ -104,7 +104,7 @@ zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-dir
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
-# bindkey -e "use emacs key bindings"
+bindkey -e "use emacs key bindings"
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^r' history-incremental-search-backward
@@ -139,10 +139,19 @@ zplug "djui/alias-tips"
 zplug "paulirish/git-open", as:plugin, if:"[[ $(command -v git) ]]"
 
 zplug "mafredri/zsh-async", on:sindresorhus/pure
-# zplug "sindresorhus/pure", use:pure.zsh, defer:3
 
-zplug "tarruda/zsh-autosuggestions", use:"dist/autosuggestions.zsh"
+### AUTOSUGGESTIONS ###
+zplug "zsh-users/zsh-completions",              defer:0
+zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
 
+if zplug check zsh-users/zsh-autosuggestions; then
+  ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down) # Add history-substring-search-* widgets to list of widgets that clear the autosuggestion
+  ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}") # Remove *-line-or-history widgets from list of widgets that clear the autosuggestion to avoid conflict with history-substring-search-* widgets
+fi
+
+### PROMPT ####
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 
 if ! zplug check; then
@@ -178,8 +187,6 @@ fi
 [[ -f "${HOME}/.completions" ]] && source "${HOME}/.completions"
 [[ -f "${HOME}/.extra" ]] && source "${HOME}/.extra"
 
-export PATH="/Users/aeldaly/.gem/ruby/2.5.0/bin:$PATH"
-
 # Customise the Powerlevel9k prompts
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -206,3 +213,5 @@ POWERLEVEL9K_CUSTOM_PYTHON_BACKGROUND="blue"
 POWERLEVEL9K_CUSTOM_RUBY="echo -n '\ue21e' Ruby"
 POWERLEVEL9K_CUSTOM_RUBY_FOREGROUND="black"
 POWERLEVEL9K_CUSTOM_RUBY_BACKGROUND="red"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
