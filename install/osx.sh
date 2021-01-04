@@ -46,8 +46,8 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-defaults write InitialKeyRepeat -int 12
-defaults write KeyRepeat -int 1
+# defaults write InitialKeyRepeat -int 12
+# defaults write KeyRepeat -int 1
 
 # Enable subpixel font rendering on non-Apple LCDs
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
@@ -56,10 +56,10 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 # defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+# defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
@@ -72,7 +72,7 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Show all filename extensions in Finder
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Show status bar in Finder
 defaults write com.apple.finder ShowStatusBar -bool true
@@ -112,7 +112,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 defaults write com.apple.finder EmptyTrashSecurely -bool true
 
 # Show the ~/Library folder
-chflags nohidden ~/Library
+# chflags nohidden ~/Library
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
@@ -145,7 +145,7 @@ defaults write com.apple.dock showhidden -bool true
 # defaults write com.apple.finder AppleShowAllFiles YES
 
 # Enable iTunes track notifications in the Dock
-defaults write com.apple.dock itunes-notifications -bool true
+# defaults write com.apple.dock itunes-notifications -bool true
 
 # Disable Safari’s thumbnail cache for History and Top Sites
 # defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
@@ -193,9 +193,9 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-defaults write com.tapbots.TweetbotMac TextAutomaticQuoteSubstitution -bool NO
-defaults write com.tapbots.TweetbotMac TextAutoCorrect -bool NO
-defaults write com.tapbots.TweetbotMac TextAutomaticTextReplacement -bool NO
+# defaults write com.tapbots.TweetbotMac TextAutomaticQuoteSubstitution -bool NO
+# defaults write com.tapbots.TweetbotMac TextAutoCorrect -bool NO
+# defaults write com.tapbots.TweetbotMac TextAutomaticTextReplacement -bool NO
 
 #Store screenshots in subfolder on desktop
 mkdir ~/Desktop/Screenshots

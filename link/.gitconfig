@@ -87,3 +87,5 @@
 [user]
 	name = Ahmed El-Daly
 	email = aeldaly@gmail.com
+[pull]
+	rebase = false

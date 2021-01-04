@@ -57,7 +57,7 @@ if [[ "$OS" =~ ^Darwin ]]; then
     iStep "Updating brew"
     brew update
     iStep "Upgrading brew packages"
-    brew upgrade --all
+    brew upgrade
     brew tap Homebrew/bundle
     scriptPath=$(dirname "$0")
     iStep "Installing brew packages... This might take a while"

@@ -219,3 +219,8 @@ POWERLEVEL9K_CUSTOM_RUBY_FOREGROUND="black"
 POWERLEVEL9K_CUSTOM_RUBY_BACKGROUND="red"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# PYTHON 3.8
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
+export PKG_CONFIG_PATH="/usr/local/opt/python@3.8/lib/pkgconfig"export PATH="/usr/local/opt/python@3.8/bin:$PATH"
