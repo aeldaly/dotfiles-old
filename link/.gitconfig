@@ -86,6 +86,6 @@
 	trustExitCode = true
 [user]
 	name = Ahmed El-Daly
-	email = aeldaly@gmail.com
+	email = aeldaly@tucows.com
 [pull]
 	rebase = false

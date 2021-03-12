@@ -1,5 +1,13 @@
+local READLINE_PATH=$(brew --prefix readline)
+local OPENSSL_PATH=$(brew --prefix openssl)
+
+export LDFLAGS="-L$READLINE_PATH/lib -L$OPENSSL_PATH/lib -L/usr/local/opt/libffi/lib -L/usr/local/opt/python@3.8/lib"
+export CPPFLAGS="-I$READLINE_PATH/include -I$OPENSSL_PATH/include -I/usr/local/opt/libffi/include"
+export PKG_CONFIG_PATH="$READLINE_PATH/lib/pkgconfig:$OPENSSL_PATH/lib/pkgconfig:/usr/local/opt/python@3.8/lib/pkgconfig"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
+
 export DOTFILES="$HOME/.dotfiles"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:/Users/aeldaly/Library/Python/3.7/bin:$PATH:$HOME/google-cloud-sdk/bin"
+export PATH="$OPENSSL_PATH/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:/Users/aeldaly/Library/Python/3.7/bin:$PATH"
 export CACHE_DIR="$HOME/.cache"
 
 [[ ! -d "$CACHE_DIR" ]] && mkdir -p "$CACHE_DIR"
@@ -222,5 +230,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # PYTHON 3.8
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
-export PKG_CONFIG_PATH="/usr/local/opt/python@3.8/lib/pkgconfig"export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
