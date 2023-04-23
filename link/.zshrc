@@ -1,3 +1,5 @@
+export PATH=/opt/homebrew/bin:$PATH
+
 local READLINE_PATH=$(brew --prefix readline)
 local OPENSSL_PATH=$(brew --prefix openssl)
 

@@ -52,7 +52,7 @@ if [[ "$OS" =~ ^Darwin ]]; then
     if [[ ! -x "$(command -v brew)" ]]; then
         iStep "Installing Homebrew"
         # install homebrew
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     iStep "Updating brew"
     brew update
