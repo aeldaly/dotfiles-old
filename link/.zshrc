@@ -1,13 +1,17 @@
 local READLINE_PATH=$(brew --prefix readline)
 local OPENSSL_PATH=$(brew --prefix openssl)
 
-export LDFLAGS="-L$READLINE_PATH/lib -L$OPENSSL_PATH/lib -L/usr/local/opt/libffi/lib -L/usr/local/opt/python@3.8/lib"
-export CPPFLAGS="-I$READLINE_PATH/include -I$OPENSSL_PATH/include -I/usr/local/opt/libffi/include"
-export PKG_CONFIG_PATH="$READLINE_PATH/lib/pkgconfig:$OPENSSL_PATH/lib/pkgconfig:/usr/local/opt/python@3.8/lib/pkgconfig"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
+# export LDFLAGS="-L$READLINE_PATH/lib -L$OPENSSL_PATH/lib -L/usr/local/opt/libffi/lib"
+# export CPPFLAGS="-I$READLINE_PATH/include -I$OPENSSL_PATH/include -I/usr/local/opt/libffi/include"
+# export PKG_CONFIG_PATH="$READLINE_PATH/lib/pkgconfig:$OPENSSL_PATH/lib/pkgconfig"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
+
+export LDFLAGS="-L/usr/local/opt/ruby@3.0/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby@3.0/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ruby@3.0/lib/pkgconfig"
 
 export DOTFILES="$HOME/.dotfiles"
-export PATH="$OPENSSL_PATH/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:/Users/aeldaly/Library/Python/3.7/bin:$PATH"
+export PATH="$OPENSSL_PATH/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 export CACHE_DIR="$HOME/.cache"
 
 [[ ! -d "$CACHE_DIR" ]] && mkdir -p "$CACHE_DIR"
@@ -180,7 +184,7 @@ if zplug check "zsh-users/zsh-history-substring-search"; then
 fi
 
 if [[ $(command -v rbenv) ]]; then
-	eval "$(rbenv init - zsh --no-rehash)"
+	eval "$(rbenv init - --no-rehash zsh)"
 fi
 
 if [[ $(command -v npm) ]]; then
@@ -228,9 +232,24 @@ POWERLEVEL9K_CUSTOM_RUBY_BACKGROUND="red"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# PYTHON 3.8
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-
 export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+
+export NVM_SYMLINK_CURRENT=true
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# pyenv
+if [[ $(command -v pyenv) ]]; then
+	export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init -)"
+fi
+
+source /Users/aeldaly/.rvm/scripts/rvm
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/ruby@3.0/bin:$PATH"
