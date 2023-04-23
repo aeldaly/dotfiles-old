@@ -89,3 +89,5 @@
 	email = aeldaly@tucows.com
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
