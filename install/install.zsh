@@ -43,6 +43,12 @@ for filename in "$link_dir/"*(D); do
         iBad "Symlink skipped, file exists: ~/$baseFile"
     fi
 done
+iStep "Handling file: ~/.ssh/config"
+if [[ ! -e ~/"~/.ssh/config" ]]; then
+    ln -sf "$link_dir/.ssh/config" ~/.ssh/config && iGood "Symlink created: ~/.ssh/config"
+else
+    iBad "Symlink skipped, file exists: ~/.ssh/config"
+fi
 iFinishStep "Symlinking complete"
 
 # OSX-only stuff.
